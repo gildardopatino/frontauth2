@@ -5,6 +5,8 @@ import AdminPage from './components/AdminPage';
 import LoginPage from './components/LoginPage';
 import Layout from './layouts/Layout';
 import './App.css';
+import { CartProvider } from './Contexts/CartContext';
+import ProductList from './components/Cart/Products/ProductList';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -36,12 +38,17 @@ function App() {
   }, []);
 
   return (
-    <Routes>
-      <Route path='/' element={<LoginPage user={user} />} />
-      <Route element={<Layout user={user} />}>
-        <Route path="/admin" element={user ? <AdminPage user={user} onLogout={handleLogout} /> : <Navigate to="/" />} />
-      </Route>
-    </Routes>
+    <CartProvider>
+      <Router>
+        <Routes>
+          <Route path='/' element={<LoginPage user={user} />} />
+          <Route element={<Layout user={user} />}>
+            <Route path="/admin" element={user ? <AdminPage user={user} onLogout={handleLogout} /> : <Navigate to="/" />} />
+            <Route path="/products" element={user ? <ProductList /> : <Navigate to="/" />}></Route>
+          </Route>
+        </Routes>
+      </Router>
+    </CartProvider>
   )
 }
 

@@ -24,7 +24,7 @@ const Layout = ({user}) => {
                                 </NavLink>
                             </li>
                             <li className="navigation-item">
-                                <NavLink className="navigation-link navigation-link-pill" end to="/dashboard" role="button" >
+                                <NavLink className="navigation-link navigation-link-pill" end to="/products" role="button" >
                                     <span className="navigation-link-info">
                                         <span className="navigation-text">
                                             Productos
