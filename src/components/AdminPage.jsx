@@ -1,7 +1,7 @@
 import React from 'react'
 
-const AdminPage = ({ user, onLogout }) => {
 
+const AdminPage = ({user, onLogout}) => {
     return (
         <div>
             <h1>Pagina de Administracion</h1>

@@ -9,7 +9,7 @@ const LoginButtonFacebook = () => {
     return (
         <div>
             <button onClick={handleLogin} className='btn btn-primary'>
-                <FaFacebook class="me-2" />
+                <FaFacebook className="me-2" />
                 Login con Facebook
             </button>
         </div>

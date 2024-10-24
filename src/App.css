@@ -1,42 +1,205 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.aside {
+  margin: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 1.6rem 3rem #0000001a;
+  border-right: 0 solid #05050b;
+  overflow: hidden;
+  width: 13rem;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  border: 0 solid black;
+  background-color: #05050b;
+  color: white;
+  transition: all 0.2s ease-in-out;
+  z-index: 1035;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+
+.wrapper {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  transition: all .2s ease-in-out;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.aside~.wrapper {
+  padding-left: 16rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.aside .navigation-link {
+  color: #e7eef8;
 }
 
-.card {
-  padding: 2em;
+
+
+.aside .navigation-link:hover {
+  background-color: var(--bg-aside-navigation);
+
+  color: black;
+
 }
 
-.read-the-docs {
-  color: #888;
+.aside-head {
+  padding-top: 0;
+  padding-right: 0.75rem;
+  padding-bottom: 0;
+  padding-left: 0.75rem;
+}
+
+.header {
+  padding: 0 0.75rem;
+  box-shadow: 0 1.6rem 3rem rgba(0, 0, 0, 0.1);
+  position: sticky;
+  z-index: 1020;
+  top: 0;
+  display: flex;
+  height: 5rem;
+  align-items: center;
+  border-bottom: 0 solid #f8f9fa;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #808191;
+}
+
+.header {
+  margin: 1rem calc(1.275rem + 0.3vw);
+  border-radius: 1rem;
+  box-shadow: 0 1.6rem 3rem rgba(0, 0, 0, 0.1);
+}
+
+.aside-body {
+  -ms-overflow-style: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  padding: .75rem 0;
+  scrollbar-width: none;
+}
+
+.navigation {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation-item {
+  padding: .375rem .75rem;
+  transition: all .2s ease-in-out;
+}
+
+.navigation-link {
+  align-items: center;
+  color: #808191;
+  display: flex;
+  font-size: .875rem;
+  font-weight: 600;
+  height: 3rem;
+  justify-content: space-between;
+  outline: none;
+  padding: .75rem;
+  position: relative;
+  text-decoration: none;
+  transition: all .2s ease-in-out;
+}
+
+.aside .navigation-link.active {
+  background-color: #19191f;
+  color: #e7eef8;
+}
+
+.aside .navigation-link {
+  color: #e7eef8;
+}
+
+.navigation-link.active {
+  background-color: #e9e7f8;
+  color: #5c4fb3;
+}
+
+.navigation .navigation-link-pill {
+  border-radius: 1rem;
+}
+
+.navigation-link-extra,
+.navigation-link-info {
+  align-items: center;
+  display: flex;
+}
+
+.navigation-link-info {
+  overflow: hidden;
+}
+
+.aside .navigation-link:hover {
+  background-color: #d7dee2;
+  color: black;
+}
+
+.navigation-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header+.content .subheader {
+  top: 5rem;
+}
+
+.brand {
+  align-items: center;
+  color: #fff;
+  display: flex;
+  height: 5rem;
+  justify-content: space-between;
+}
+
+.content {
+  display: flex;
+  flex: 1 0 auto;
+  padding: 0;
+}
+
+.page,
+.page-wrapper {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+}
+
+.footer {
+  align-items: center;
+  -webkit-backdrop-filter: blur(.5rem);
+  backdrop-filter: blur(.5rem);
+  background-color: #ffffff80;
+  border-top: 1px solid #f8f9fa;
+  bottom: 0;
+  color: #323232;
+  display: flex;
+  height: 3rem;
+  padding: 0 .75rem;
+  position: -webkit-sticky;
+  position: sticky;
+  will-change: backdrop-filter;
+  z-index: 1018;
+}
+
+.footer {
+  border-radius: 1rem;
+  border-top: 0;
+  box-shadow: 0 1.6rem 3rem #0000001a;
+  margin: 0 calc(1.275rem + .3vw) 1rem;
+}
+
+.position-relative {
+  position: relative !important;
+}
+
+.footer {
+  margin: 0 1.5rem 1rem;
 }

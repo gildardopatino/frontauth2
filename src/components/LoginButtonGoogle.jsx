@@ -9,7 +9,7 @@ const LoginButtonGoogle = () => {
     return (
         <div>
             <button onClick={handleLogin} className='btn btn-danger'>
-                <FaGoogle class="me-2"/>
+                <FaGoogle className="me-2"/>
                 Login con Google
             </button>
         </div>
