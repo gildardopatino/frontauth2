@@ -1,8 +1,13 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
+const Layout = ({ user }) => {
+    const navigate = useNavigate();
 
-const Layout = ({user}) => {
+    const goCheckout = () => {
+        navigate('/checkout');
+    }
     return (
         <div className="app">
             <div className='aside'>
@@ -41,7 +46,7 @@ const Layout = ({user}) => {
                     <div className="container-fluid">
                         <div className="d-flex justify-content-between align-items-center">
                             <div className="header-left col-md">
-                                LADO IZQUIERDO
+                                <button onClick={goCheckout} class="btn btn-secondary">Ver tu carrito</button>
                             </div>
                             <div className="header-right col-md-auto">
                                 <div className="row g-3">

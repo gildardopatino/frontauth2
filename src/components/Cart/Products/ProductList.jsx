@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { CartContext } from '../../../Contexts/CartContext';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
     const [trm, setTrm] = useState(1);
-
+    const {addToCart} = useContext(CartContext)
     useEffect(() => {
-
+        //Buscamos el valor del dolar
         fetch('https://api.exchangerate-api.com/v4/latest/USD')
             .then(response => response.json())
             .then(data => {
@@ -13,7 +14,7 @@ const ProductList = () => {
                     setTrm(data.rates.COP)
                 }
             });
-
+        //Consultamos la lista de productos
         fetch('https://fakestoreapi.com/products')
             .then(response => response.json())
             .then(data => setProducts(data));
@@ -24,6 +25,8 @@ const ProductList = () => {
             <div className="row">
                 {products.map(product => {
                     const price = Math.round(product.price * trm);
+                    const title = product.title;
+                    const id = product.id;
                     return (
                         <div className="col-md-4 mb-4" key={product.id}>
                             <div className="card h-100">
@@ -36,7 +39,7 @@ const ProductList = () => {
                                     <p className='card-text'>$ {price}</p>
                                 </div>
                                 <div className="card-footer">
-                                    <button className='btn btn-primary'>Agregar</button>
+                                    <button onClick={() => addToCart({id, title, price})} className='btn btn-primary'>Agregar</button>
                                 </div>
                             </div>
                         </div>

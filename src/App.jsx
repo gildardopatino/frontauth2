@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import AdminPage from './components/AdminPage';
 import LoginPage from './components/LoginPage';
 import Layout from './layouts/Layout';
-import './App.css';
 import { CartProvider } from './Contexts/CartContext';
 import ProductList from './components/Cart/Products/ProductList';
+import { ToastContainer } from 'react-toastify';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+import Cart from './components/Cart/Cart';
+import PaymentSuccesful from './components/Cart/PaymentSuccesful';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -45,9 +49,12 @@ function App() {
           <Route element={<Layout user={user} />}>
             <Route path="/admin" element={user ? <AdminPage user={user} onLogout={handleLogout} /> : <Navigate to="/" />} />
             <Route path="/products" element={user ? <ProductList /> : <Navigate to="/" />}></Route>
+            <Route path="/checkout" element={user ? <Cart /> : <Navigate to="/" />}></Route>
+            <Route path="/completado" element={<PaymentSuccesful />}></Route>
           </Route>
         </Routes>
       </Router>
+      <ToastContainer />
     </CartProvider>
   )
 }
