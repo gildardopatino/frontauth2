@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
-const Layout = ({ user }) => {
+const Layout = ({ user, onLogout }) => {
     const navigate = useNavigate();
 
     const goCheckout = () => {
@@ -46,7 +46,7 @@ const Layout = ({ user }) => {
                     <div className="container-fluid">
                         <div className="d-flex justify-content-between align-items-center">
                             <div className="header-left col-md">
-                                <button onClick={goCheckout} class="btn btn-secondary">Ver tu carrito</button>
+                                <button onClick={goCheckout} className="btn btn-secondary">Ver tu carrito</button>
                             </div>
                             <div className="header-right col-md-auto">
                                 <div className="row g-3">
@@ -60,7 +60,16 @@ const Layout = ({ user }) => {
                                             </div>
                                         </div>
                                         <div className="position-relative">
-                                            <img className="avatar rounded-circle bg-l25-warning" src={user?.provider == 'google' ? user?.photos[0]?.value : ''} alt="Avatar" width="48" height="48" />
+                                            <div className="dropdown">
+                                                <img data-bs-toggle="dropdown"
+                                                    aria-expanded="false" className="avatar rounded-circle bg-l25-warning dropdown-toggle"
+                                                    src={user?.provider == 'google' ? user?.photos[0]?.value : ''} alt="Avatar" width="48"
+                                                    height="48" id="avatar" />
+                                                <ul class="dropdown-menu" aria-labelledby="avatar">
+                                                    <li><a className="dropdown-item" href="#">Configuración</a></li>
+                                                    <li><a className="dropdown-item" onClick={onLogout}>Cerrar Sesion</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

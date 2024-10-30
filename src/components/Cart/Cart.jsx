@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { CartContext } from '../../Contexts/CartContext';
 
 const Cart = () => {
-    const { cartItems, removeFromCart } = useContext(CartContext);
+    const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
     const total = cartItems.reduce((acumulador, product) => acumulador + (product.price * product.quantity), 0);
     const porcentajeIva = 19;
     const totalIva = Math.round(total * porcentajeIva / 100);
@@ -10,6 +10,12 @@ const Cart = () => {
 
     const handleRemove = (productId) => {
         removeFromCart(productId);
+    }
+
+    const handleQuantityChange = (productId, quantity) => {
+        if (quantity > 0) {
+            updateQuantity(productId, quantity);
+        }
     }
 
     const createPayment = async () => {
@@ -26,7 +32,6 @@ const Cart = () => {
             items,
             email: 'test_user_123456@testuser.com'
         }
-
         const response = await fetch('http://localhost:3000/crear-pago', {
             method: 'POST',
             headers: {
@@ -73,7 +78,14 @@ const Cart = () => {
                                                         <tr key={product.id}>
                                                             <td>{product.title}</td>
                                                             <td>{product.price}</td>
-                                                            <td>{product.quantity}</td>
+                                                            <td>
+                                                                <input type="number"
+                                                                    className='form-control'
+                                                                    value={product.quantity}
+                                                                    onChange={(e) => handleQuantityChange(product.id, parseInt(e.target.value))}
+                                                                    min={1}
+                                                                />
+                                                            </td>
                                                             <td>{product.price * product.quantity}</td>
                                                             <td>
                                                                 <button onClick={() => handleRemove(product.id)} className='btn btn-danger'>Eliminar</button>

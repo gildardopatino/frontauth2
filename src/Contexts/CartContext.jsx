@@ -47,8 +47,14 @@ export const CartProvider = ({ children }) => {
         return savedCart ? JSON.parse(savedCart) : [];
     }
 
+    const updateQuantity = (productId, quantity) => {
+        setCartItems(lisItems => {
+            return lisItems.map(item => item.id === productId ? { ...item, quantity: quantity } : item);
+        });
+    }
+
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, getCartItems, clearCart }}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, getCartItems, clearCart, updateQuantity }}>
             {children}
         </CartContext.Provider>
     )

@@ -8,6 +8,7 @@ import ProductList from './components/Cart/Products/ProductList';
 import { ToastContainer } from 'react-toastify';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'react-toastify/dist/ReactToastify.css';
 import Cart from './components/Cart/Cart';
 import PaymentSuccesful from './components/Cart/PaymentSuccesful';
@@ -46,7 +47,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<LoginPage user={user} />} />
-          <Route element={<Layout user={user} />}>
+          <Route element={<Layout user={user} onLogout={handleLogout} />}>
             <Route path="/admin" element={user ? <AdminPage user={user} onLogout={handleLogout} /> : <Navigate to="/" />} />
             <Route path="/products" element={user ? <ProductList /> : <Navigate to="/" />}></Route>
             <Route path="/checkout" element={user ? <Cart /> : <Navigate to="/" />}></Route>

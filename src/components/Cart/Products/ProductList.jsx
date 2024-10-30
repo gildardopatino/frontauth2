@@ -5,17 +5,9 @@ const ProductList = () => {
     const [products, setProducts] = useState([]);
     const [trm, setTrm] = useState(1);
     const {addToCart} = useContext(CartContext)
-    useEffect(() => {
-        //Buscamos el valor del dolar
-        fetch('https://api.exchangerate-api.com/v4/latest/USD')
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.rates && data.rates.COP) {
-                    setTrm(data.rates.COP)
-                }
-            });
+    useEffect(() => {       
         //Consultamos la lista de productos
-        fetch('https://fakestoreapi.com/products')
+        fetch('http://localhost:3000/product/list')
             .then(response => response.json())
             .then(data => setProducts(data));
     }, []);
@@ -24,7 +16,7 @@ const ProductList = () => {
         <div className='container'>
             <div className="row">
                 {products.map(product => {
-                    const price = Math.round(product.price * trm);
+                    const price = product.price;
                     const title = product.title;
                     const id = product.id;
                     return (
