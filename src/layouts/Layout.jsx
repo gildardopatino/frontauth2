@@ -1,8 +1,10 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
+import CartDropdown from '../components/Cart/CartDropdown'
 
 
-const Layout = ({user}) => {
+const Layout = ({ user, onLogout }) => {
+    
     return (
         <div className="app">
             <div className='aside'>
@@ -15,7 +17,7 @@ const Layout = ({user}) => {
                     <nav>
                         <ul className="navigation">
                             <li className="navigation-item">
-                                <NavLink className="navigation-link navigation-link-pill" end to="/dashboard" role="button" >
+                                <NavLink className="navigation-link navigation-link-pill" end to="/admin" role="button" >
                                     <span className="navigation-link-info">
                                         <span className="navigation-text">
                                             Dashboard
@@ -24,7 +26,7 @@ const Layout = ({user}) => {
                                 </NavLink>
                             </li>
                             <li className="navigation-item">
-                                <NavLink className="navigation-link navigation-link-pill" end to="/dashboard" role="button" >
+                                <NavLink className="navigation-link navigation-link-pill" end to="/products" role="button" >
                                     <span className="navigation-link-info">
                                         <span className="navigation-text">
                                             Productos
@@ -41,7 +43,7 @@ const Layout = ({user}) => {
                     <div className="container-fluid">
                         <div className="d-flex justify-content-between align-items-center">
                             <div className="header-left col-md">
-                                LADO IZQUIERDO
+                                <CartDropdown />
                             </div>
                             <div className="header-right col-md-auto">
                                 <div className="row g-3">
@@ -55,7 +57,14 @@ const Layout = ({user}) => {
                                             </div>
                                         </div>
                                         <div className="position-relative">
-                                            <img className="avatar rounded-circle bg-l25-warning" src={user?.provider == 'google' ? user?.photos[0]?.value : ''} alt="Avatar" width="48" height="48" />
+                                            <div className="dropdown">
+                                                <img data-bs-toggle="dropdown" aria-expanded="false" id="avatarDropDown"
+                                                    className="dropdown-toggle avatar rounded-circle bg-l25-warning" src={user?.provider == 'google' ? user?.photos[0]?.value : ''} alt="Avatar" width="48" height="48" />
+                                                <ul className="dropdown-menu p-3" aria-labelledby='avatarDropDown'>
+                                                    <li className='dropdown-item'>Configuración</li>
+                                                    <li className='dropdown-item' onClick={onLogout}>Cerrar Sesión</li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
