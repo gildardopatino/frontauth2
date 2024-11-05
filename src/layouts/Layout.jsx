@@ -2,6 +2,8 @@ import React from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import CartDropdown from '../components/Cart/CartDropdown'
 
+const Layout = ({ user, onLogout }) => {
+    const navigate = useNavigate();
 
 const Layout = ({ user, onLogout }) => {
     
