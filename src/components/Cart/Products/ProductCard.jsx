@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaCartPlus } from 'react-icons/fa';
-import  {formatPrice} from '../../utils/formatPrice';
 
 const ProductCard = ({ id, title, price, category, description, image, onAddToCart }) => {
     return (
@@ -13,7 +12,7 @@ const ProductCard = ({ id, title, price, category, description, image, onAddToCa
                     <h5 className="card-title">{title}</h5>
                     <p className="card-text">{description}</p>
                     <p className="card-text"><small className="text-muted">Category: {category}</small></p>
-                    <p className="card-text"><strong>{formatPrice(price)}</strong></p>
+                    <p className="card-text"><strong>{price}</strong></p>
                 </div>
                 <div className="card-footer text-muted">
                     <button className="btn btn-primary" onClick={() => onAddToCart({ id, title, price })}>

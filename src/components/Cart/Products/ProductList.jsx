@@ -1,45 +1,45 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react';
+import ProductCard from './ProductCard';
 import { CartContext } from '../../../Contexts/CartContext';
+import ProductListSkeleton from '../../skeletons/ProductListSkeleton';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
-    const [trm, setTrm] = useState(1);
-    const {addToCart} = useContext(CartContext)
-    useEffect(() => {       
-        //Consultamos la lista de productos
+    const { addToCart } = useContext(CartContext);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
         fetch('http://localhost:3000/product/list')
             .then(response => response.json())
-            .then(data => setProducts(data));
+            .then(data => {
+                setProducts(data)
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error)
+                setLoading(false);
+            });
     }, []);
 
     return (
-        <div className='container'>
+        <div className="container">
             <div className="row">
-                {products.map(product => {
-                    const price = product.price;
-                    const title = product.title;
-                    const id = product.id;
-                    return (
-                        <div className="col-md-4 mb-4" key={product.id}>
-                            <div className="card h-100">
-                                <div className="d-flex justify-content-center align-item-center" style={{ height: '200px' }}>
-                                    <img className='card-img-top' src={product.image} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }} />
-                                </div>
-                                <div className="card-body">
-                                    <h5>{product.title}</h5>
-                                    <p className='card-text'>{product.description}</p>
-                                    <p className='card-text'>$ {price}</p>
-                                </div>
-                                <div className="card-footer">
-                                    <button onClick={() => addToCart({id, title, price})} className='btn btn-primary'>Agregar</button>
-                                </div>
-                            </div>
-                        </div>
+                {loading ? <ProductListSkeleton /> : (products.map(product => (
+                        <ProductCard
+                            key={`${product._id}_id`}
+                            id={product._id}
+                            title={product.title}
+                            price={product.price}
+                            category={product.category}
+                            description={product.description}
+                            image={product.image}
+                            onAddToCart={addToCart}
+                        />
                     )
-                })}
+                ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default ProductList
+export default ProductList;

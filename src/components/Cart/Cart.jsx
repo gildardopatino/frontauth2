@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { CartContext } from '../contexts/CartContext';
+import { CartContext } from '../../Contexts/CartContext';
 import { formatPrice } from '../../utils/formatPrice';
 import LoadingOverlay from '../LoadingOverlay';
 const Cart = ({ user }) => {

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CartContext } from '../contexts/CartContext';
+import { CartContext } from '../../Contexts/CartContext';
 import { FaShoppingCart, FaTrash } from 'react-icons/fa';
 
 const CartDropdown = () => {
