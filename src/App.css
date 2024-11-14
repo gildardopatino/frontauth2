@@ -228,5 +228,21 @@
 
 .loading-content img {
   width: 100px;
-  /* Ajusta el tamaño del GIF según sea necesario */
+}
+
+/*medias query*/
+@media (max-width: 768px){
+  body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aside {
+    width: 100%;
+    position: relative;
+  }
+
+  .wrapper {
+    padding-left: 0;
+  }
 }
